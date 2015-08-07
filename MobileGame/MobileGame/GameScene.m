@@ -14,17 +14,42 @@
     /* Setup your scene here */
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
-    myLabel.text = @"Hello, World!";
-    myLabel.fontSize = 65;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame));
     
+    
+    myLabel.text = @"It's Sticks!";
+    myLabel.fontSize = 45;
+    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+                                   (CGRectGetMidY(self.frame)+100));
     [self addChild:myLabel];
+    
+    SKSpriteNode *hero = [SKSpriteNode spriteNodeWithImageNamed:@"Hero"];
+    hero.xScale = 1;
+    hero.yScale = 1;
+    hero.position = CGPointMake(CGRectGetMidX(self.frame),
+                                CGRectGetMidY(self.frame));
+    [self addChild:hero];
+    
+    SKSpriteNode *fish = [SKSpriteNode spriteNodeWithImageNamed:@"Fish"];
+    fish.xScale = 0.5;
+    fish.yScale = 0.5;
+    fish.position = CGPointMake((CGRectGetMidX(self.frame)-100),
+                                CGRectGetMidY(self.frame));
+    [self addChild:fish];
+    
+    SKSpriteNode *bee = [SKSpriteNode spriteNodeWithImageNamed:@"Bee"];
+    bee.xScale = 0.5;
+    bee.xScale = 0.5;
+    bee.position = CGPointMake((CGRectGetMidX(self.frame)+100),
+                               CGRectGetMidY(self.frame));
+    [self addChild:bee];
+    
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
+    /*
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
@@ -40,6 +65,9 @@
         
         [self addChild:sprite];
     }
+     */
+    
+    
 }
 
 -(void)update:(CFTimeInterval)currentTime {
