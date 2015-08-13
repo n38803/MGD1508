@@ -24,6 +24,7 @@
 		CD63640F1B7D167C00E70F73 /* paperbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD63640E1B7D167C00E70F73 /* paperbackground.png */; };
 		CD6364121B7D244000E70F73 /* cRun1.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6364101B7D244000E70F73 /* cRun1.png */; };
 		CD6364131B7D244000E70F73 /* crun2.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6364111B7D244000E70F73 /* crun2.png */; };
+		CD6364151B7D361800E70F73 /* eating.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD6364141B7D361800E70F73 /* eating.mp3 */; };
 		CDFA165B1B7D140600B6DFFD /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA165A1B7D140600B6DFFD /* brick.png */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		CD63640E1B7D167C00E70F73 /* paperbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paperbackground.png; sourceTree = "<group>"; };
 		CD6364101B7D244000E70F73 /* cRun1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cRun1.png; sourceTree = "<group>"; };
 		CD6364111B7D244000E70F73 /* crun2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crun2.png; sourceTree = "<group>"; };
+		CD6364141B7D361800E70F73 /* eating.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = eating.mp3; sourceTree = "<group>"; };
 		CDFA165A1B7D140600B6DFFD /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 		CD0BFB6A1B7535F3001B7104 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				CD6364141B7D361800E70F73 /* eating.mp3 */,
 				CD0BFB6B1B7535F3001B7104 /* glub.mp3 */,
 				CD0BFB6C1B7535F3001B7104 /* grunt.mp3 */,
 				CD0BFB6D1B7535F3001B7104 /* insect.mp3 */,
@@ -266,6 +269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD6364151B7D361800E70F73 /* eating.mp3 in Resources */,
 				CD0BFB511B7533A2001B7104 /* LaunchScreen.xib in Resources */,
 				CD6364121B7D244000E70F73 /* cRun1.png in Resources */,
 				CD0BFB6F1B7535F3001B7104 /* background.png in Resources */,

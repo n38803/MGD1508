@@ -8,7 +8,7 @@
 
 #import "GameScene.h"
 
-@implementation GameScene 
+@implementation GameScene
 
 static const uint32_t heroCategory      =  0x1 << 0;
 static const uint32_t worldCategory     =  0x1 << 1;
@@ -55,8 +55,8 @@ static const uint32_t enemyCategory     =  0x1 << 1;
     _hero.physicsBody.dynamic = YES;
     _hero.physicsBody.allowsRotation = NO;
     _hero.physicsBody.categoryBitMask = heroCategory;
-    _hero.physicsBody.collisionBitMask = heroCategory | worldCategory | enemyCategory;
-    _hero.physicsBody.contactTestBitMask = heroCategory | worldCategory |  enemyCategory;
+    _hero.physicsBody.collisionBitMask = worldCategory | enemyCategory;
+    _hero.physicsBody.contactTestBitMask = worldCategory |  enemyCategory;
     
     [self addChild:_hero];
     
@@ -66,15 +66,17 @@ static const uint32_t enemyCategory     =  0x1 << 1;
     
     // Enemy fish sprite node assignment & physics body
     SKSpriteNode *fish = [SKSpriteNode spriteNodeWithImageNamed:@"Fish"];
-    fish.xScale = .5;
-    fish.yScale = .5;
+    fish.xScale = .35;
+    fish.yScale = .35;
     fish.name = @"fish";
     
     fish.position = CGPointMake((CGRectGetMidX(self.frame)-100),
                                 CGRectGetMidY(self.frame));
+    fish.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:fish.size];
+    fish.physicsBody.dynamic = YES;
+    fish.physicsBody.allowsRotation = NO;
     fish.physicsBody.categoryBitMask = enemyCategory;
-    fish.physicsBody.collisionBitMask = enemyCategory | heroCategory;
-    fish.physicsBody.contactTestBitMask = enemyCategory | heroCategory;
+    fish.physicsBody.contactTestBitMask = heroCategory;
     
     [self addChild:fish];
     
@@ -85,9 +87,11 @@ static const uint32_t enemyCategory     =  0x1 << 1;
     bee.name = @"bee";
     bee.position = CGPointMake((CGRectGetMidX(self.frame)+100),
                                CGRectGetMidY(self.frame));
+    //bee.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bee.size];
+    bee.physicsBody.dynamic = YES;
+    bee.physicsBody.allowsRotation = NO;
     bee.physicsBody.categoryBitMask = enemyCategory;
-    bee.physicsBody.collisionBitMask = enemyCategory | heroCategory;
-    bee.physicsBody.contactTestBitMask = enemyCategory | heroCategory;
+    bee.physicsBody.contactTestBitMask = heroCategory;
     
     
     [self addChild:bee];
@@ -177,7 +181,7 @@ static const uint32_t enemyCategory     =  0x1 << 1;
 }
 */
 
-/*
+// Physics Delegate init function
 -(id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size])
@@ -189,12 +193,32 @@ static const uint32_t enemyCategory     =  0x1 << 1;
     }
     return self;
 }
-*/
+
+
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
+
+    NSLog(@"Body A: %@ contacting Body B: %@",contact.bodyA.node.name, contact.bodyB.node.name);
     
-    // THIS IS WHERE TEH COLISSION MAGIC HAPPENS
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    firstBody = contact.bodyA;
+    secondBody = contact.bodyB;
+    
+    if(firstBody.categoryBitMask == enemyCategory || secondBody.categoryBitMask == enemyCategory)
+    {
+        SKNode *node = contact.bodyA.node;
+        NSLog(@"COLISSION");
+        [node runAction: [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO]];
+        
+    }
+    
+    
+
+
+    
+
     
 }
 
