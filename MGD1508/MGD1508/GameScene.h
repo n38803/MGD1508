@@ -10,4 +10,6 @@
 
 @interface GameScene : SKScene
 
+@property SKSpriteNode *hero;
+
 @end
