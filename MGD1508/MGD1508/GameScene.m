@@ -10,10 +10,22 @@
 
 @implementation GameScene
 
-static const uint32_t heroCategory      =  0x1 << 0;
-static const uint32_t worldCategory     =  0x1 << 1;
-static const uint32_t enemyCategory     =  0x1 << 1;
+static const int heroCategory      =  1 << 0;
+static const int worldCategory     =  1 << 1;
+static const int enemyCategory     =  1 << 2;
 
+// Init function
+-(id)initWithSize:(CGSize)size
+{
+    if (self = [super initWithSize:size])
+    {
+        
+        self.physicsWorld.gravity = CGVectorMake(0,0);
+        self.physicsWorld.contactDelegate = self;
+        
+    }
+    return self;
+}
 
 
 -(void)didMoveToView:(SKView *)view {
@@ -51,12 +63,15 @@ static const uint32_t enemyCategory     =  0x1 << 1;
     _hero.name = @"hero";
     _hero.position = CGPointMake(CGRectGetMidX(self.frame),
                                 CGRectGetMidY(self.frame));
+    
     _hero.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_hero.size];
     _hero.physicsBody.dynamic = YES;
     _hero.physicsBody.allowsRotation = NO;
     _hero.physicsBody.categoryBitMask = heroCategory;
     _hero.physicsBody.collisionBitMask = worldCategory | enemyCategory;
     _hero.physicsBody.contactTestBitMask = worldCategory |  enemyCategory;
+    _hero.physicsBody.usesPreciseCollisionDetection = YES;
+
     
     [self addChild:_hero];
     
@@ -72,11 +87,15 @@ static const uint32_t enemyCategory     =  0x1 << 1;
     
     fish.position = CGPointMake((CGRectGetMidX(self.frame)-100),
                                 CGRectGetMidY(self.frame));
+    
     fish.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:fish.size];
     fish.physicsBody.dynamic = YES;
     fish.physicsBody.allowsRotation = NO;
     fish.physicsBody.categoryBitMask = enemyCategory;
     fish.physicsBody.contactTestBitMask = heroCategory;
+    fish.physicsBody.usesPreciseCollisionDetection = YES;
+
+    
     
     [self addChild:fish];
     
@@ -88,10 +107,9 @@ static const uint32_t enemyCategory     =  0x1 << 1;
     bee.position = CGPointMake((CGRectGetMidX(self.frame)+100),
                                CGRectGetMidY(self.frame));
     //bee.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bee.size];
-    bee.physicsBody.dynamic = YES;
+    bee.physicsBody.dynamic = NO;
     bee.physicsBody.allowsRotation = NO;
-    bee.physicsBody.categoryBitMask = enemyCategory;
-    bee.physicsBody.contactTestBitMask = heroCategory;
+    //bee.physicsBody.categoryBitMask = enemyCategory;
     
     
     [self addChild:bee];
@@ -120,13 +138,17 @@ static const uint32_t enemyCategory     =  0x1 << 1;
         [self addChild:ground];
     }
     
+    // Create ground node for physics and collisions
     SKNode* groundNode = [SKNode node];
-    
     groundNode.position = CGPointMake(0, gTexture.size.height);
     groundNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width, gTexture.size.height * 2)];
     groundNode.physicsBody.dynamic = NO;
     [self addChild:groundNode];
     
+    
+    
+    self.physicsWorld.gravity = CGVectorMake(0,0);
+    self.physicsWorld.contactDelegate = self;
     
     
 }
@@ -181,46 +203,25 @@ static const uint32_t enemyCategory     =  0x1 << 1;
 }
 */
 
-// Physics Delegate init function
--(id)initWithSize:(CGSize)size
-{
-    if (self = [super initWithSize:size])
-    {
 
-        self.physicsWorld.gravity = CGVectorMake(0,0);
-        self.physicsWorld.contactDelegate = self;
-
-    }
-    return self;
-}
 
 
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
-
+    // print out collision points
     NSLog(@"Body A: %@ contacting Body B: %@",contact.bodyA.node.name, contact.bodyB.node.name);
+
     
-    SKPhysicsBody *firstBody, *secondBody;
-    
-    firstBody = contact.bodyA;
-    secondBody = contact.bodyB;
-    
-    if(firstBody.categoryBitMask == enemyCategory || secondBody.categoryBitMask == enemyCategory)
+    if(contact.bodyA.categoryBitMask == enemyCategory || contact.bodyB.categoryBitMask == enemyCategory)
     {
-        SKNode *node = contact.bodyA.node;
-        NSLog(@"COLISSION");
-        [node runAction: [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO]];
+        // detect node of collision, play sound, and remove node
+        SKNode *node = contact.bodyB.node;
+        [self runAction: [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO]];
+        [node removeFromParent];
         
     }
     
-    
-
-
-    
-
-    
 }
-
 
 @end
