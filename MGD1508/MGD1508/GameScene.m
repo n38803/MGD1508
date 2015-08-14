@@ -36,7 +36,6 @@ static const int enemyCategory     =  1 << 2;
     bgImage.position = CGPointMake(self.size.width/2, self.size.height/2);
     bgImage.xScale = 1;
     bgImage.yScale = 1;
-    bgImage.physicsBody.categoryBitMask = worldCategory;
     [self addChild:bgImage];
     
     /*
@@ -100,19 +99,21 @@ static const int enemyCategory     =  1 << 2;
     [self addChild:fish];
     
     // Enemy Bee sprite node assignment & physics body
-    SKSpriteNode *bee = [SKSpriteNode spriteNodeWithImageNamed:@"Bee"];
-    bee.xScale = 0.5;
-    bee.xScale = 0.5;
-    bee.name = @"bee";
-    bee.position = CGPointMake((CGRectGetMidX(self.frame)+100),
+    _bee = [SKSpriteNode spriteNodeWithImageNamed:@"Bee"];
+    _bee.xScale = 0.5;
+    _bee.xScale = 0.5;
+    _bee.name = @"bee";
+    _bee.position = CGPointMake((CGRectGetMidX(self.frame)+100),
                                CGRectGetMidY(self.frame));
-    //bee.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bee.size];
-    bee.physicsBody.dynamic = NO;
-    bee.physicsBody.allowsRotation = NO;
-    //bee.physicsBody.categoryBitMask = enemyCategory;
+    _bee.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_bee.size];
+    _bee.physicsBody.dynamic = NO;
+    _bee.physicsBody.allowsRotation = NO;
+    _bee.physicsBody.categoryBitMask = enemyCategory;
+    _bee.physicsBody.contactTestBitMask = heroCategory;
+    fish.physicsBody.usesPreciseCollisionDetection = YES;
     
     
-    [self addChild:bee];
+    [self addChild:_bee];
     
     
     // Ground Image
@@ -140,15 +141,25 @@ static const int enemyCategory     =  1 << 2;
     
     // Create ground node for physics and collisions
     SKNode* groundNode = [SKNode node];
-    groundNode.position = CGPointMake(0, gTexture.size.height);
+    groundNode.name = @"Ground";
+    groundNode.position = CGPointMake(00, gTexture.size.height);
     groundNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width, gTexture.size.height * 2)];
     groundNode.physicsBody.dynamic = NO;
+    groundNode.physicsBody.categoryBitMask = worldCategory;
+    groundNode.physicsBody.contactTestBitMask = heroCategory;
+    fish.physicsBody.usesPreciseCollisionDetection = YES;
     [self addChild:groundNode];
     
     
     
     self.physicsWorld.gravity = CGVectorMake(0,0);
     self.physicsWorld.contactDelegate = self;
+    
+     // load sound files to ensure no lag during gameplay
+    [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO];
+    [SKAction playSoundFileNamed:@"glub.mp3" waitForCompletion:NO];
+    [SKAction playSoundFileNamed:@"grunt.mp3" waitForCompletion:NO];
+    [SKAction playSoundFileNamed:@"insect.mp3" waitForCompletion:NO];
     
     
 }
@@ -162,10 +173,10 @@ static const int enemyCategory     =  1 << 2;
         
         
         // define location of user touch
-        CGPoint location = [touch locationInNode:self];
+        _touchLocation = [touch locationInNode:self];
 
         // determine if user touch is equivelant to node location
-        SKNode *node = [self nodeAtPoint:location];
+        SKNode *node = [self nodeAtPoint:_touchLocation];
         
         // run sound or action with corresponding with appropriate node
         if ([node.name isEqualToString:@"hero"]) {
@@ -178,9 +189,10 @@ static const int enemyCategory     =  1 << 2;
         else if ([node.name isEqualToString:@"bee"]){
             [node runAction:[SKAction playSoundFileNamed:@"insect.mp3" waitForCompletion:NO]];
         }
+
         
         // Move bees based on user input
-        SKAction *heroMove = [SKAction moveTo:location duration:2];
+        SKAction *heroMove = [SKAction moveTo:_touchLocation duration:2];
         [_hero runAction:heroMove];
         
         
@@ -192,6 +204,7 @@ static const int enemyCategory     =  1 << 2;
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     
+    _bee.physicsBody.velocity=CGVectorMake(200, 200);
 }
 
 /*
@@ -212,15 +225,39 @@ static const int enemyCategory     =  1 << 2;
     // print out collision points
     NSLog(@"Body A: %@ contacting Body B: %@",contact.bodyA.node.name, contact.bodyB.node.name);
 
+    // assign secondary collision point to a node
+    SKNode *node = contact.bodyB.node;
     
     if(contact.bodyA.categoryBitMask == enemyCategory || contact.bodyB.categoryBitMask == enemyCategory)
     {
-        // detect node of collision, play sound, and remove node
-        SKNode *node = contact.bodyB.node;
+        // Play sound and remove node of player collision
         [self runAction: [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO]];
         [node removeFromParent];
         
     }
+    else if(contact.bodyA.categoryBitMask == worldCategory || contact.bodyB.categoryBitMask == worldCategory)
+    {
+        // detect node of collision, play sound, and remove node
+        SKNode *node = contact.bodyB.node;
+        [self runAction: [SKAction playSoundFileNamed:@"grunt.mp3" waitForCompletion:NO]];
+        [node removeFromParent];
+        
+    }
+    /*
+    else if(CGPointEqualToPoint(_touchLocation, node.position)){
+        // run sound or action with corresponding with appropriate node
+        if ([node.name isEqualToString:@"hero"]) {
+            [node runAction:[SKAction playSoundFileNamed:@"grunt.mp3" waitForCompletion:NO]];
+            
+        }
+        else if ([node.name isEqualToString:@"fish"]){
+            [node runAction:[SKAction playSoundFileNamed:@"glub.mp3" waitForCompletion:NO]];
+        }
+        else if ([node.name isEqualToString:@"bee"]){
+            [node runAction:[SKAction playSoundFileNamed:@"insect.mp3" waitForCompletion:NO]];
+        }
+    }
+     */
     
 }
 

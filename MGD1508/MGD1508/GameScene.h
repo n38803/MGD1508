@@ -12,5 +12,8 @@
 
 
 @property SKSpriteNode *hero;
+@property SKSpriteNode *bee;
+
+@property CGPoint touchLocation;
 
 @end
