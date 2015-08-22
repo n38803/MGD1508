@@ -13,6 +13,7 @@
 
 @property SKSpriteNode *hero;
 @property SKSpriteNode *bee;
+@property NSMutableArray *cTextures;
 
 @property CGPoint touchLocation;
 

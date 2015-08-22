@@ -13,6 +13,9 @@
 static const int heroCategory      =  1 << 0;
 static const int worldCategory     =  1 << 1;
 static const int enemyCategory     =  1 << 2;
+CGRect screenRect;
+CGFloat screenHeight;
+CGFloat screenWidth;
 
 // Init function
 -(id)initWithSize:(CGSize)size
@@ -20,8 +23,8 @@ static const int enemyCategory     =  1 << 2;
     if (self = [super initWithSize:size])
     {
         
-        self.physicsWorld.gravity = CGVectorMake(0,0);
-        self.physicsWorld.contactDelegate = self;
+        //self.physicsWorld.gravity = CGVectorMake(0,0);
+        //self.physicsWorld.contactDelegate = self;
         
     }
     return self;
@@ -31,12 +34,21 @@ static const int enemyCategory     =  1 << 2;
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
     
+    
+    
+    // Grab screen parameters
+    screenRect = [[UIScreen mainScreen] bounds];
+    screenHeight = screenRect.size.height;
+    screenWidth = screenRect.size.width;
+
     // Background image
     SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"paperbackground"];
     bgImage.position = CGPointMake(self.size.width/2, self.size.height/2);
+    bgImage.zPosition = -50;
     bgImage.xScale = 1;
     bgImage.yScale = 1;
     [self addChild:bgImage];
+
     
     /*
     // title on screen (this was a test, will be removed in alpha version)
@@ -151,6 +163,38 @@ static const int enemyCategory     =  1 << 2;
     [self addChild:groundNode];
     
     
+    // Backdrop Image
+    SKTexture* sTexture = [SKTexture textureWithImageNamed:@"skyline"];
+    sTexture.filteringMode = SKTextureFilteringNearest;
+    
+    // Create action to simulate backdrop movement
+    SKAction* sMovement = [SKAction moveByX:-sTexture.size.width*2 y:0 duration:0.1 * sTexture.size.width*2];
+    SKAction* sReset    = [SKAction moveByX:sTexture.size.width*2 y:0 duration:0];
+    SKAction* sSequence = [SKAction repeatActionForever:[SKAction sequence:@[sMovement, sReset]]];
+    
+    
+    for( int i = 0; i < 2 + self.frame.size.width / ( sTexture.size.width * 2 ); ++i ) {
+        SKSpriteNode* backdrop = [SKSpriteNode spriteNodeWithTexture:sTexture];
+        [backdrop setScale:1.0];
+        backdrop.zPosition = -20;
+        backdrop.alpha = 0.35;
+        backdrop.position = CGPointMake(i * backdrop.size.width, backdrop.size.height / 2 + gTexture.size.height * 2);
+        [backdrop runAction:sSequence];
+        [self addChild:backdrop];
+    }
+    
+    // Randomized Cloads
+    SKTextureAtlas *cloudsAtlas = [SKTextureAtlas atlasNamed:@"Clouds"];
+    NSArray *textureNamesClouds = [cloudsAtlas textureNames];
+    _cTextures = [NSMutableArray new];
+    for (NSString *name in textureNamesClouds) {
+        SKTexture *texture = [cloudsAtlas textureNamed:name];
+        [_cTextures addObject:texture];
+    }
+    
+    [self clouds];
+    
+    
     
     self.physicsWorld.gravity = CGVectorMake(0,0);
     self.physicsWorld.contactDelegate = self;
@@ -164,8 +208,30 @@ static const int enemyCategory     =  1 << 2;
     
 }
 
+-(void)clouds{
+    
+    int randomClouds = (arc4random() % 1);
+    if(randomClouds == 1){
+        
+        int whichCloud = (arc4random() % 3);
+        SKSpriteNode *cloud = [SKSpriteNode spriteNodeWithTexture:[_cTextures objectAtIndex:whichCloud]];
+        int randomYAxix = (arc4random() % 300);
+        cloud.position = CGPointMake(screenRect.size.height+cloud.size.height/2, randomYAxix);
+        cloud.zPosition = 1;
+        [cloud setScale: 2.0];
+        int randomTimeCloud = (arc4random() % 1);
+        
+        SKAction *move =[SKAction moveTo:CGPointMake(0-cloud.size.height, randomYAxix) duration:randomTimeCloud];
+        SKAction *remove = [SKAction removeFromParent];
+        [cloud runAction:[SKAction sequence:@[move,remove]]];
+        [self addChild:cloud];
+    }
+    
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    [self clouds];
     
 
     /* Called when a touch begins */

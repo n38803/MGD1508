@@ -25,6 +25,10 @@
 		CD6364121B7D244000E70F73 /* cRun1.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6364101B7D244000E70F73 /* cRun1.png */; };
 		CD6364131B7D244000E70F73 /* crun2.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6364111B7D244000E70F73 /* crun2.png */; };
 		CD6364151B7D361800E70F73 /* eating.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD6364141B7D361800E70F73 /* eating.mp3 */; };
+		CDA0945C1B87F6390007DF66 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CDA0945B1B87F6390007DF66 /* MenuScene.sks */; };
+		CDA0945F1B87F6920007DF66 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA0945E1B87F6920007DF66 /* MenuScene.m */; };
+		CDA094611B880E350007DF66 /* skyline.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA094601B880E350007DF66 /* skyline.png */; };
+		CDA094631B8813DE0007DF66 /* Clouds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = CDA094621B8813DE0007DF66 /* Clouds.atlas */; };
 		CDFA165B1B7D140600B6DFFD /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA165A1B7D140600B6DFFD /* brick.png */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +68,11 @@
 		CD6364101B7D244000E70F73 /* cRun1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cRun1.png; sourceTree = "<group>"; };
 		CD6364111B7D244000E70F73 /* crun2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crun2.png; sourceTree = "<group>"; };
 		CD6364141B7D361800E70F73 /* eating.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = eating.mp3; sourceTree = "<group>"; };
+		CDA0945B1B87F6390007DF66 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
+		CDA0945D1B87F6920007DF66 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
+		CDA0945E1B87F6920007DF66 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		CDA094601B880E350007DF66 /* skyline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skyline.png; sourceTree = "<group>"; };
+		CDA094621B8813DE0007DF66 /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
 		CDFA165A1B7D140600B6DFFD /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +117,9 @@
 			children = (
 				CD0BFB3F1B7533A2001B7104 /* AppDelegate.h */,
 				CD0BFB401B7533A2001B7104 /* AppDelegate.m */,
+				CDA0945D1B87F6920007DF66 /* MenuScene.h */,
+				CDA0945E1B87F6920007DF66 /* MenuScene.m */,
+				CDA0945B1B87F6390007DF66 /* MenuScene.sks */,
 				CD0BFB421B7533A2001B7104 /* GameScene.h */,
 				CD0BFB431B7533A2001B7104 /* GameScene.m */,
 				CD0BFB451B7533A2001B7104 /* GameScene.sks */,
@@ -161,6 +173,8 @@
 		CD0BFB671B7535F3001B7104 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDA094621B8813DE0007DF66 /* Clouds.atlas */,
+				CDA094601B880E350007DF66 /* skyline.png */,
 				CD6364101B7D244000E70F73 /* cRun1.png */,
 				CD6364111B7D244000E70F73 /* crun2.png */,
 				CD63640E1B7D167C00E70F73 /* paperbackground.png */,
@@ -270,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD6364151B7D361800E70F73 /* eating.mp3 in Resources */,
+				CDA094631B8813DE0007DF66 /* Clouds.atlas in Resources */,
 				CD0BFB511B7533A2001B7104 /* LaunchScreen.xib in Resources */,
 				CD6364121B7D244000E70F73 /* cRun1.png in Resources */,
 				CD0BFB6F1B7535F3001B7104 /* background.png in Resources */,
@@ -282,6 +297,8 @@
 				CD0BFB4C1B7533A2001B7104 /* Main.storyboard in Resources */,
 				CD0BFB731B7535F3001B7104 /* insect.mp3 in Resources */,
 				CD0BFB721B7535F3001B7104 /* grunt.mp3 in Resources */,
+				CDA094611B880E350007DF66 /* skyline.png in Resources */,
+				CDA0945C1B87F6390007DF66 /* MenuScene.sks in Resources */,
 				CDFA165B1B7D140600B6DFFD /* brick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD0BFB491B7533A2001B7104 /* GameViewController.m in Sources */,
+				CDA0945F1B87F6920007DF66 /* MenuScene.m in Sources */,
 				CD0BFB411B7533A2001B7104 /* AppDelegate.m in Sources */,
 				CD0BFB441B7533A2001B7104 /* GameScene.m in Sources */,
 				CD0BFB3E1B7533A2001B7104 /* main.m in Sources */,
