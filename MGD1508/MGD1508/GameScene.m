@@ -17,6 +17,9 @@ CGRect screenRect;
 CGFloat screenHeight;
 CGFloat screenWidth;
 
+SKLabelNode *scoreNode;
+NSInteger *score;
+
 // Init function
 -(id)initWithSize:(CGSize)size
 {
@@ -50,15 +53,27 @@ CGFloat screenWidth;
     [self addChild:bgImage];
 
     
-    /*
-    // title on screen (this was a test, will be removed in alpha version)
-    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    myLabel.text = @"It's Sticks!";
-    myLabel.fontSize = 45;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   (CGRectGetMidY(self.frame)+100));
-    [self addChild:myLabel];
-     */
+
+    // Pause Label
+    _pause = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    _pause.text = @"[ Pause ]";
+    _pause.zPosition = 100;
+    _pause.name = @"Pause";
+    _pause.fontColor = [UIColor redColor];
+    _pause.fontSize = 25;
+    _pause.position = CGPointMake(100, 700);
+
+    [self addChild:_pause];
+    
+    // Score Label
+    score = 0;
+    scoreNode = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    //scoreNode.position = CGPointMake( CGRectGetMidX( self.frame ), 3 * self.frame.size.height / 4 );
+    scoreNode.position = CGPointMake(900, 700);
+    scoreNode.zPosition = 100;
+    scoreNode.fontColor = [UIColor redColor];
+    scoreNode.text = [NSString stringWithFormat:@"SCORE: %d", score];
+    [self addChild:scoreNode];
     
     
     // Create main character texture
@@ -243,6 +258,7 @@ CGFloat screenWidth;
 
         // determine if user touch is equivelant to node location
         SKNode *node = [self nodeAtPoint:_touchLocation];
+
         
         // run sound or action with corresponding with appropriate node
         if ([node.name isEqualToString:@"hero"]) {
@@ -254,6 +270,16 @@ CGFloat screenWidth;
         }
         else if ([node.name isEqualToString:@"bee"]){
             [node runAction:[SKAction playSoundFileNamed:@"insect.mp3" waitForCompletion:NO]];
+        }
+        else if ([node.name isEqualToString:@"Pause"]){
+            if (self.scene.view.paused == YES){
+                _pause.text = @"[ Pause ]";
+                self.scene.view.paused = NO;
+            }
+            else if(self.scene.view.paused == NO){
+                _pause.text = @"[ Pause ]";
+                self.scene.view.paused = YES;
+            }
         }
 
         
@@ -298,6 +324,8 @@ CGFloat screenWidth;
     {
         // Play sound and remove node of player collision
         [self runAction: [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO]];
+        score++;
+        scoreNode.text = [NSString stringWithFormat:@"SCORE: %d", score];
         [node removeFromParent];
         
     }

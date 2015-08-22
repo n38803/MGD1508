@@ -14,6 +14,7 @@
 @property SKSpriteNode *hero;
 @property SKSpriteNode *bee;
 @property NSMutableArray *cTextures;
+@property SKLabelNode *pause;
 
 @property CGPoint touchLocation;
 
