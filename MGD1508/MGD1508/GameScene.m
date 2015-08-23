@@ -23,6 +23,7 @@ float screenScale;
 float tinyScale;
 
 SKLabelNode *scoreNode;
+SKSpriteNode *bones;
 NSInteger *score;
 
 // Init function
@@ -75,6 +76,7 @@ NSInteger *score;
 
     [self addChild:_pause];
     
+    
     // Score Label
     score = 0;
     scoreNode = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
@@ -115,7 +117,7 @@ NSInteger *score;
     SKAction* run = [SKAction repeatActionForever:[SKAction animateWithTextures:@[h1Texture, h2Texture] timePerFrame:0.2]];
     [_hero runAction:run];
     
-    // Enemy fish sprite node assignment & physics body
+    // Fish sprite node assignment & physics body
     SKSpriteNode *fish = [SKSpriteNode spriteNodeWithImageNamed:@"Fish"];
     [fish setScale:0.35*screenScale];
     fish.name = @"fish";
@@ -127,12 +129,26 @@ NSInteger *score;
     fish.physicsBody.dynamic = YES;
     fish.physicsBody.allowsRotation = NO;
     fish.physicsBody.categoryBitMask = foodCategory;
+    
     fish.physicsBody.contactTestBitMask = heroCategory;
     fish.physicsBody.usesPreciseCollisionDetection = YES;
 
-    
-    
     [self addChild:fish];
+
+    bones = [SKSpriteNode spriteNodeWithImageNamed:@"eatenfish"];
+    [bones setScale:0.15*screenScale];
+    bones.name = @"bones";
+    
+    bones.position = CGPointMake((CGRectGetMidX(self.frame)-100),
+                                CGRectGetMidY(self.frame));
+    
+    bones.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bones.size];
+    bones.physicsBody.dynamic = NO;
+    bones.physicsBody.allowsRotation = NO;
+    //bones.physicsBody.categoryBitMask = enemyCategory;
+    //bones.physicsBody.contactTestBitMask = heroCategory;
+    bones.physicsBody.usesPreciseCollisionDetection = YES;
+    
     
     // Enemy Bee sprite node assignment & physics body
     _bee = [SKSpriteNode spriteNodeWithImageNamed:@"Bee"];
@@ -282,11 +298,9 @@ NSInteger *score;
         }
         else if ([node.name isEqualToString:@"Pause"]){
             if (self.scene.view.paused == YES){
-                _pause.text = @"[ Pause ]";
                 self.scene.view.paused = NO;
             }
             else if(self.scene.view.paused == NO){
-                _pause.text = @"[ Pause ]";
                 self.scene.view.paused = YES;
             }
         }
@@ -331,7 +345,9 @@ NSInteger *score;
     
     if(contact.bodyA.categoryBitMask == foodCategory || contact.bodyB.categoryBitMask == foodCategory)
     {
-        // Play sound and remove node of player collision
+        
+        [self addChild:bones];
+        // Play sound, provide visual feedback, and remove node of player collision
         [self runAction: [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO]];
         score++;
         scoreNode.text = [NSString stringWithFormat:@"SCORE: %ld", (long)score];
@@ -344,6 +360,7 @@ NSInteger *score;
         // Play sound
         [self runAction: [SKAction playSoundFileNamed:@"grunt.mp3" waitForCompletion:NO]];
         NSLog(@"Player collided with Enemy");
+        
         
         // Transition to GameOver Scene
         SKScene *gameOver = [[GameOverScene alloc] initWithSize:self.size];

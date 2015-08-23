@@ -32,6 +32,7 @@
 		CDA094661B88D8520007DF66 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA094651B88D8520007DF66 /* GameOverScene.m */; };
 		CDA094681B88D8620007DF66 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CDA094671B88D8620007DF66 /* GameOverScene.sks */; };
 		CDA0946A1B88D8C30007DF66 /* gameover.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA094691B88D8C30007DF66 /* gameover.png */; };
+		CDA0946C1B89751B0007DF66 /* eatenfish.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA0946B1B89751B0007DF66 /* eatenfish.png */; };
 		CDFA165B1B7D140600B6DFFD /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA165A1B7D140600B6DFFD /* brick.png */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		CDA094651B88D8520007DF66 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		CDA094671B88D8620007DF66 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		CDA094691B88D8C30007DF66 /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameover.png; sourceTree = "<group>"; };
+		CDA0946B1B89751B0007DF66 /* eatenfish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eatenfish.png; sourceTree = "<group>"; };
 		CDFA165A1B7D140600B6DFFD /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +188,7 @@
 				CDA094621B8813DE0007DF66 /* Clouds.atlas */,
 				CDA094601B880E350007DF66 /* skyline.png */,
 				CD6364101B7D244000E70F73 /* cRun1.png */,
+				CDA0946B1B89751B0007DF66 /* eatenfish.png */,
 				CD6364111B7D244000E70F73 /* crun2.png */,
 				CDA094691B88D8C30007DF66 /* gameover.png */,
 				CD63640E1B7D167C00E70F73 /* paperbackground.png */,
@@ -309,6 +312,7 @@
 				CD0BFB4C1B7533A2001B7104 /* Main.storyboard in Resources */,
 				CD0BFB731B7535F3001B7104 /* insect.mp3 in Resources */,
 				CD0BFB721B7535F3001B7104 /* grunt.mp3 in Resources */,
+				CDA0946C1B89751B0007DF66 /* eatenfish.png in Resources */,
 				CDA094611B880E350007DF66 /* skyline.png in Resources */,
 				CDA0945C1B87F6390007DF66 /* MenuScene.sks in Resources */,
 				CDA094681B88D8620007DF66 /* GameOverScene.sks in Resources */,

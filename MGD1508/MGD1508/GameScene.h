@@ -15,6 +15,7 @@
 @property SKSpriteNode *bee;
 @property NSMutableArray *cTextures;
 @property SKLabelNode *pause;
+@property SKLabelNode *play;
 
 @property CGPoint touchLocation;
 
