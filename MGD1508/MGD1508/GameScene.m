@@ -7,15 +7,20 @@
 //
 
 #import "GameScene.h"
+#import "GameOverScene.h"
 
 @implementation GameScene
 
-static const int heroCategory      =  1 << 0;
-static const int worldCategory     =  1 << 1;
-static const int enemyCategory     =  1 << 2;
+static const int heroCategory       =  1 << 0;
+static const int worldCategory      =  1 << 1;
+static const int enemyCategory      =  1 << 2;
+static const int foodCategory       =  1 << 3;
+
 CGRect screenRect;
 CGFloat screenHeight;
 CGFloat screenWidth;
+float screenScale;
+float tinyScale;
 
 SKLabelNode *scoreNode;
 NSInteger *score;
@@ -43,13 +48,17 @@ NSInteger *score;
     screenRect = [[UIScreen mainScreen] bounds];
     screenHeight = screenRect.size.height;
     screenWidth = screenRect.size.width;
+    NSLog(@"Screen Height: %f", screenHeight);
+    NSLog(@"Screen Width: %f", screenWidth);
+    screenScale = (screenHeight/768);
+    NSLog(@"Screen Scale: %f", screenScale);
 
     // Background image
     SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"paperbackground"];
     bgImage.position = CGPointMake(self.size.width/2, self.size.height/2);
+    //bgImage.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
     bgImage.zPosition = -50;
-    bgImage.xScale = 1;
-    bgImage.yScale = 1;
+    [bgImage setScale:0.75/screenScale];
     [self addChild:bgImage];
 
     
@@ -59,6 +68,7 @@ NSInteger *score;
     _pause.text = @"[ Pause ]";
     _pause.zPosition = 100;
     _pause.name = @"Pause";
+    [_pause setScale:1.0*screenScale];
     _pause.fontColor = [UIColor redColor];
     _pause.fontSize = 25;
     _pause.position = CGPointMake(100, 700);
@@ -71,8 +81,9 @@ NSInteger *score;
     //scoreNode.position = CGPointMake( CGRectGetMidX( self.frame ), 3 * self.frame.size.height / 4 );
     scoreNode.position = CGPointMake(900, 700);
     scoreNode.zPosition = 100;
+    [scoreNode setScale:1.0*screenScale];
     scoreNode.fontColor = [UIColor redColor];
-    scoreNode.text = [NSString stringWithFormat:@"SCORE: %d", score];
+    scoreNode.text = [NSString stringWithFormat:@"SCORE: %ld", (long)score];
     [self addChild:scoreNode];
     
     
@@ -84,8 +95,7 @@ NSInteger *score;
 
     // Main character node assignment & physics body
     _hero = [SKSpriteNode spriteNodeWithTexture:h1Texture];
-    _hero.xScale = 1;
-    _hero.yScale = 1;
+    [_hero setScale:1.0*screenScale];
     _hero.name = @"hero";
     _hero.position = CGPointMake(CGRectGetMidX(self.frame),
                                 CGRectGetMidY(self.frame));
@@ -94,8 +104,8 @@ NSInteger *score;
     _hero.physicsBody.dynamic = YES;
     _hero.physicsBody.allowsRotation = NO;
     _hero.physicsBody.categoryBitMask = heroCategory;
-    _hero.physicsBody.collisionBitMask = worldCategory | enemyCategory;
-    _hero.physicsBody.contactTestBitMask = worldCategory |  enemyCategory;
+    _hero.physicsBody.collisionBitMask = worldCategory | enemyCategory | foodCategory;
+    _hero.physicsBody.contactTestBitMask = worldCategory |  enemyCategory | foodCategory;
     _hero.physicsBody.usesPreciseCollisionDetection = YES;
 
     
@@ -107,8 +117,7 @@ NSInteger *score;
     
     // Enemy fish sprite node assignment & physics body
     SKSpriteNode *fish = [SKSpriteNode spriteNodeWithImageNamed:@"Fish"];
-    fish.xScale = .35;
-    fish.yScale = .35;
+    [fish setScale:0.35*screenScale];
     fish.name = @"fish";
     
     fish.position = CGPointMake((CGRectGetMidX(self.frame)-100),
@@ -117,7 +126,7 @@ NSInteger *score;
     fish.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:fish.size];
     fish.physicsBody.dynamic = YES;
     fish.physicsBody.allowsRotation = NO;
-    fish.physicsBody.categoryBitMask = enemyCategory;
+    fish.physicsBody.categoryBitMask = foodCategory;
     fish.physicsBody.contactTestBitMask = heroCategory;
     fish.physicsBody.usesPreciseCollisionDetection = YES;
 
@@ -127,8 +136,7 @@ NSInteger *score;
     
     // Enemy Bee sprite node assignment & physics body
     _bee = [SKSpriteNode spriteNodeWithImageNamed:@"Bee"];
-    _bee.xScale = 0.5;
-    _bee.xScale = 0.5;
+    [_bee setScale:0.5*screenScale];
     _bee.name = @"bee";
     _bee.position = CGPointMake((CGRectGetMidX(self.frame)+100),
                                CGRectGetMidY(self.frame));
@@ -161,6 +169,7 @@ NSInteger *score;
         
         ground.position = CGPointMake(i * ground.size.width, ground.size.height / 2);
         
+        
         [ground runAction:gSequence];
         
         [self addChild:ground];
@@ -190,7 +199,7 @@ NSInteger *score;
     
     for( int i = 0; i < 2 + self.frame.size.width / ( sTexture.size.width * 2 ); ++i ) {
         SKSpriteNode* backdrop = [SKSpriteNode spriteNodeWithTexture:sTexture];
-        [backdrop setScale:1.0];
+        [backdrop setScale:1.0*screenScale];
         backdrop.zPosition = -20;
         backdrop.alpha = 0.35;
         backdrop.position = CGPointMake(i * backdrop.size.width, backdrop.size.height / 2 + gTexture.size.height * 2);
@@ -320,15 +329,29 @@ NSInteger *score;
     // assign secondary collision point to a node
     SKNode *node = contact.bodyB.node;
     
-    if(contact.bodyA.categoryBitMask == enemyCategory || contact.bodyB.categoryBitMask == enemyCategory)
+    if(contact.bodyA.categoryBitMask == foodCategory || contact.bodyB.categoryBitMask == foodCategory)
     {
         // Play sound and remove node of player collision
         [self runAction: [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO]];
         score++;
-        scoreNode.text = [NSString stringWithFormat:@"SCORE: %d", score];
+        scoreNode.text = [NSString stringWithFormat:@"SCORE: %ld", (long)score];
         [node removeFromParent];
         
     }
+    
+    else if(contact.bodyA.categoryBitMask == enemyCategory || contact.bodyB.categoryBitMask == enemyCategory)
+    {
+        // Play sound
+        [self runAction: [SKAction playSoundFileNamed:@"grunt.mp3" waitForCompletion:NO]];
+        NSLog(@"Player collided with Enemy");
+        
+        // Transition to GameOver Scene
+        SKScene *gameOver = [[GameOverScene alloc] initWithSize:self.size];
+        SKTransition *transition = [SKTransition doorsCloseHorizontalWithDuration:0.5];
+        [self.view presentScene:gameOver transition:transition];
+        
+    }
+    
     else if(contact.bodyA.categoryBitMask == worldCategory || contact.bodyB.categoryBitMask == worldCategory)
     {
         // detect node of collision, play sound, and remove node
