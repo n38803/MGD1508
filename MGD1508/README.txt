@@ -3,6 +3,8 @@ Name: Shaun Thompson
 GitHub: https://github.com/n38803/MGD1508
 
 Orientation: Portrait
-Hardware: iPhone 6
+Preferred Hardware: iPad Air
 
-I haven’t had an opportunity to restrict orientation and really mess around with the formatting of my game’s world, so the above settings are the best to currently view the game.
+** Device does not have orientation restriction as of yet
+** gravity parameters removed until I figure out how I want my scoring to be determined
+** Resizing works as planned, however, coding for platform position causes graphics to be pulled to bottom of screen which adds too much real-estate on the skyline.
