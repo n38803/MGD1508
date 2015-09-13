@@ -292,6 +292,7 @@ NSInteger *score;
         }
         else if ([node.name isEqualToString:@"fish"]){
             [node runAction:[SKAction playSoundFileNamed:@"glub.mp3" waitForCompletion:NO]];
+
         }
         else if ([node.name isEqualToString:@"bee"]){
             [node runAction:[SKAction playSoundFileNamed:@"insect.mp3" waitForCompletion:NO]];
@@ -314,6 +315,14 @@ NSInteger *score;
 
     }  
     
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        // unpause game
+        
+        self.scene.view.paused = NO;
+    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -352,6 +361,19 @@ NSInteger *score;
         score++;
         scoreNode.text = [NSString stringWithFormat:@"SCORE: %ld", (long)score];
         [node removeFromParent];
+        
+        // pause scene
+        self.scene.view.paused = YES;
+        
+        // Display narrative as alertview
+        UIAlertView *dialogue =    [[UIAlertView alloc]
+                                    initWithTitle:nil
+                                    message:@"Mmm... fish are good."
+                                    delegate:self
+                                    cancelButtonTitle: @"continue"
+                                    otherButtonTitles:nil];
+        [dialogue show];
+        
         
     }
     

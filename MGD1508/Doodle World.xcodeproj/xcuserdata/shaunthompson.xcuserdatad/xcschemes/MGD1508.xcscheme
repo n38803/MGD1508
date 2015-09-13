@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CD0BFB371B7533A2001B7104"
-               BuildableName = "MGD1508.app"
+               BuildableName = "Doodle World.app"
                BlueprintName = "MGD1508"
                ReferencedContainer = "container:Doodle World.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD0BFB371B7533A2001B7104"
-            BuildableName = "MGD1508.app"
+            BuildableName = "Doodle World.app"
             BlueprintName = "MGD1508"
             ReferencedContainer = "container:Doodle World.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD0BFB371B7533A2001B7104"
-            BuildableName = "MGD1508.app"
+            BuildableName = "Doodle World.app"
             BlueprintName = "MGD1508"
             ReferencedContainer = "container:Doodle World.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CD0BFB371B7533A2001B7104"
-            BuildableName = "MGD1508.app"
+            BuildableName = "Doodle World.app"
             BlueprintName = "MGD1508"
             ReferencedContainer = "container:Doodle World.xcodeproj">
          </BuildableReference>
