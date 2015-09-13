@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "CreditsScene.h"
 #import "TutorialScene.h"
+#import "IntroScene.h"
 
 @implementation MenuScene
 
@@ -91,7 +92,7 @@ float tinyScale;
     if ([node.name isEqualToString:@"start"]) {
         NSLog(@"start pressed");
         
-        SKScene *game = [[GameScene alloc] initWithSize:self.size];
+        SKScene *game = [[IntroScene alloc] initWithSize:self.size];
         SKTransition *transition = [SKTransition doorsCloseHorizontalWithDuration:0.5];
         [self.view presentScene:game transition:transition];
     }

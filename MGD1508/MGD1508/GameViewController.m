@@ -45,8 +45,8 @@
     
     // Create and configure the scene.
     //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
-    //MenuScene *scene = [MenuScene unarchiveFromFile:@"MenuScene"];
-    IntroScene *scene = [IntroScene unarchiveFromFile:@"IntroScene"];
+    MenuScene *scene = [MenuScene unarchiveFromFile:@"MenuScene"];
+    //IntroScene *scene = [IntroScene unarchiveFromFile:@"IntroScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
