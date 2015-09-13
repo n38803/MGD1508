@@ -40,6 +40,8 @@
 		CDA0946C1B89751B0007DF66 /* eatenfish.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA0946B1B89751B0007DF66 /* eatenfish.png */; };
 		CDA19AA61BA4AA5C00D7BEBD /* IntroScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CDA19AA51BA4AA5C00D7BEBD /* IntroScene.sks */; };
 		CDA19AA91BA4AA8B00D7BEBD /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19AA81BA4AA8B00D7BEBD /* IntroScene.m */; };
+		CDA19AAC1BA4FC3B00D7BEBD /* Storyline1.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA19AAA1BA4FC3B00D7BEBD /* Storyline1.png */; };
+		CDA19AAD1BA4FC3B00D7BEBD /* Storyline2.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA19AAB1BA4FC3B00D7BEBD /* Storyline2.png */; };
 		CDFA165B1B7D140600B6DFFD /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA165A1B7D140600B6DFFD /* brick.png */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,8 @@
 		CDA19AA51BA4AA5C00D7BEBD /* IntroScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IntroScene.sks; sourceTree = "<group>"; };
 		CDA19AA71BA4AA8B00D7BEBD /* IntroScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroScene.h; sourceTree = "<group>"; };
 		CDA19AA81BA4AA8B00D7BEBD /* IntroScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroScene.m; sourceTree = "<group>"; };
+		CDA19AAA1BA4FC3B00D7BEBD /* Storyline1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Storyline1.png; sourceTree = "<group>"; };
+		CDA19AAB1BA4FC3B00D7BEBD /* Storyline2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Storyline2.png; sourceTree = "<group>"; };
 		CDFA165A1B7D140600B6DFFD /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +215,8 @@
 		CD0BFB671B7535F3001B7104 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDA19AAA1BA4FC3B00D7BEBD /* Storyline1.png */,
+				CDA19AAB1BA4FC3B00D7BEBD /* Storyline2.png */,
 				CD5CEB1D1B915CB8003CE92C /* nextgenLogo.png */,
 				CDA094621B8813DE0007DF66 /* Clouds.atlas */,
 				CDA094601B880E350007DF66 /* skyline.png */,
@@ -337,12 +343,14 @@
 				CD0BFB711B7535F3001B7104 /* glub.mp3 in Resources */,
 				CD6364131B7D244000E70F73 /* crun2.png in Resources */,
 				CD63640F1B7D167C00E70F73 /* paperbackground.png in Resources */,
+				CDA19AAC1BA4FC3B00D7BEBD /* Storyline1.png in Resources */,
 				CD0BFB461B7533A2001B7104 /* GameScene.sks in Resources */,
 				CD0BFB4C1B7533A2001B7104 /* Main.storyboard in Resources */,
 				CDA19AA61BA4AA5C00D7BEBD /* IntroScene.sks in Resources */,
 				CD0BFB731B7535F3001B7104 /* insect.mp3 in Resources */,
 				CD0BFB721B7535F3001B7104 /* grunt.mp3 in Resources */,
 				CDA0946C1B89751B0007DF66 /* eatenfish.png in Resources */,
+				CDA19AAD1BA4FC3B00D7BEBD /* Storyline2.png in Resources */,
 				CDA094611B880E350007DF66 /* skyline.png in Resources */,
 				CDA0945C1B87F6390007DF66 /* MenuScene.sks in Resources */,
 				CD5CEB141B91482C003CE92C /* CreditsScene.sks in Resources */,

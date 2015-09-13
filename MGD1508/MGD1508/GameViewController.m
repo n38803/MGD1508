@@ -9,6 +9,7 @@
 #import "GameViewController.h"
 #import "GameScene.h"
 #import "MenuScene.h"
+#import "IntroScene.h"
 
 @implementation SKScene (Unarchive)
 
@@ -44,7 +45,8 @@
     
     // Create and configure the scene.
     //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
-    MenuScene *scene = [MenuScene unarchiveFromFile:@"MenuScene"];
+    //MenuScene *scene = [MenuScene unarchiveFromFile:@"MenuScene"];
+    IntroScene *scene = [IntroScene unarchiveFromFile:@"IntroScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.

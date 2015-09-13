@@ -37,44 +37,36 @@ float screenScale;
     NSLog(@"Screen Scale: %f", screenScale);
     
     
-    SKLabelNode *title = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    title.position = CGPointMake(CGRectGetMidX(self.frame),
-                                 CGRectGetMidY(self.frame)+100);
-    title.fontSize = 45;
-    [title setScale:1.0*screenScale];
-    title.fontColor = [UIColor whiteColor];
-    title.text = @"CREDITS";
-    [self addChild:title];
-    
-    SKLabelNode *creator = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    creator.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame)-50);
-    creator.fontSize = 20;
-    [creator setScale:1.0*screenScale];
-    creator.fontColor = [UIColor blackColor];
-    creator.text = @"Game Creator: NextGen Technologies";
-    [self addChild:creator];
-    
-    SKLabelNode *art = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    art.position = CGPointMake(CGRectGetMidX(self.frame),
-                               CGRectGetMidY(self.frame)-100);
-    art.fontSize = 20;
-    [art setScale:1.0*screenScale];
-    art.fontColor = [UIColor blackColor];
-    art.text = @"Game Art: Joe Kaiser (twitter: @Jotato | web: jotato.com)";
-    [self addChild:art];
+    // Background image
+    SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"paperbackground"];
+    bgImage.position = CGPointMake(self.size.width/2, self.size.height/2);
+    bgImage.zPosition = -50;
+    [bgImage setScale:0.75/screenScale];
+    [self addChild:bgImage];
     
     
     
-    SKLabelNode *back = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    back.text = @"[ Back ]";
-    back.name = @"back";
-    [back setScale:1.0*screenScale];
-    back.fontColor = [UIColor redColor];
-    back.fontSize = 25;
-    back.position = CGPointMake(100, 700);
+    // Story Portrait 1
+    SKSpriteNode *scene1 = [SKSpriteNode spriteNodeWithImageNamed:@"Storyline1"];
+    [scene1 setScale:0.8*screenScale];
+    scene1.name = @"scene1";
+    scene1.zPosition = 2;
     
-    [self addChild:back];
+    scene1.position = CGPointMake((CGRectGetMidX(self.frame)),
+                                CGRectGetMidY(self.frame)+150);
+    [self addChild:scene1];
+    
+    // Story Portrait 2
+    SKSpriteNode *scene2 = [SKSpriteNode spriteNodeWithImageNamed:@"Storyline2"];
+    [scene2 setScale:0.35*screenScale];
+    scene2.name = @"scene2";
+    
+    scene2.position = CGPointMake((CGRectGetMidX(self.frame)),
+                                  CGRectGetMidY(self.frame));
+    [self addChild:scene2];
+    
+    
+
     
     
 }
@@ -96,6 +88,18 @@ float screenScale;
     }
     
     */
+    
+    // set time delay before refresh to allow deletion to complete on parse
+    double delayInSeconds = 5.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        
+        //[alert dismissWithClickedButtonIndex:0 animated:YES];
+        
+    });
+        
+        
     
 }
 
