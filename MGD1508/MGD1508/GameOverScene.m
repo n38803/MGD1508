@@ -7,7 +7,7 @@
 //
 
 #import "GameOverScene.h"
-#import "GameScene.h"
+#import "MenuScene.h"
 
 @implementation GameOverScene
 
@@ -56,9 +56,9 @@ CGFloat screenWidth;
     
     // Play Again Label
     SKLabelNode *play = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    play.text = @"[ Play Again ]";
+    play.text = @"[ Main Menu ]";
     play.zPosition = 100;
-    play.name = @"Play Again";
+    play.name = @"Main Menu";
     play.fontColor = [UIColor blackColor];
     play.fontSize = 25;
     play.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -79,10 +79,10 @@ CGFloat screenWidth;
     SKNode *node = [self nodeAtPoint:location];
     
     // if next button touched, start transition to next scene
-    if ([node.name isEqualToString:@"Play Again"]) {
+    if ([node.name isEqualToString:@"Main Menu"]) {
         NSLog(@"Player opted to play again");
         
-        SKScene *myScene = [[GameScene alloc] initWithSize:self.size];
+        SKScene *myScene = [[MenuScene alloc] initWithSize:self.size];
         SKTransition *transition = [SKTransition doorsCloseHorizontalWithDuration:0.5];
         [self.view presentScene:myScene transition:transition];
     }

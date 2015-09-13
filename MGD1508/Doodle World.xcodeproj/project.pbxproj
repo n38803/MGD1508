@@ -42,6 +42,7 @@
 		CDA19AA91BA4AA8B00D7BEBD /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA19AA81BA4AA8B00D7BEBD /* IntroScene.m */; };
 		CDA19AAC1BA4FC3B00D7BEBD /* Storyline1.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA19AAA1BA4FC3B00D7BEBD /* Storyline1.png */; };
 		CDA19AAD1BA4FC3B00D7BEBD /* Storyline2.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA19AAB1BA4FC3B00D7BEBD /* Storyline2.png */; };
+		CDA19AAF1BA529B900D7BEBD /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA19AAE1BA529B900D7BEBD /* map.png */; };
 		CDFA165B1B7D140600B6DFFD /* brick.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFA165A1B7D140600B6DFFD /* brick.png */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		CDA19AA81BA4AA8B00D7BEBD /* IntroScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroScene.m; sourceTree = "<group>"; };
 		CDA19AAA1BA4FC3B00D7BEBD /* Storyline1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Storyline1.png; sourceTree = "<group>"; };
 		CDA19AAB1BA4FC3B00D7BEBD /* Storyline2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Storyline2.png; sourceTree = "<group>"; };
+		CDA19AAE1BA529B900D7BEBD /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		CDFA165A1B7D140600B6DFFD /* brick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brick.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +217,7 @@
 		CD0BFB671B7535F3001B7104 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDA19AAE1BA529B900D7BEBD /* map.png */,
 				CDA19AAA1BA4FC3B00D7BEBD /* Storyline1.png */,
 				CDA19AAB1BA4FC3B00D7BEBD /* Storyline2.png */,
 				CD5CEB1D1B915CB8003CE92C /* nextgenLogo.png */,
@@ -330,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDA19AAF1BA529B900D7BEBD /* map.png in Resources */,
 				CD6364151B7D361800E70F73 /* eating.mp3 in Resources */,
 				CDA094631B8813DE0007DF66 /* Clouds.atlas in Resources */,
 				CD0BFB511B7533A2001B7104 /* LaunchScreen.xib in Resources */,

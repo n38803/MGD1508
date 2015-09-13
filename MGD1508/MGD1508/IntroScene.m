@@ -59,24 +59,24 @@ float screenScale;
     // Story captions for portrait 1
     SKLabelNode *caption1 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
     caption1.fontSize = 25;
-    caption1.position = CGPointMake(330, 225);
+    caption1.position = CGPointMake(370, 225);
     caption1.name = @"caption1";
     caption1.fontColor = [UIColor blackColor];
-    caption1.text = @"Stix had lived a calm, boring, and pretty lonely life ...";
+    caption1.text = @"Stix had lived a calm, boring, and pretty lonely existence";
     
     SKLabelNode *caption2 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
     caption2.fontSize = 25;
-    caption2.position = CGPointMake(330, 225);
+    caption2.position = CGPointMake(380, 205);
     caption2.name = @"caption2";
     caption2.fontColor = [UIColor blackColor];
     caption2.text = @"... until he found the love of his life, Stickly.";
     
     SKLabelNode *caption3 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
     caption3.fontSize = 25;
-    caption3.position = CGPointMake(330, 225);
+    caption3.position = CGPointMake(500, 195);
     caption3.name = @"caption3";
     caption3.fontColor = [UIColor blackColor];
-    caption3.text = @"Stix & Stickly were as happy as could be";
+    caption3.text = @"Stix & Stickly were the happiest hand drawn creatures on earth!";
     
     
     
@@ -92,24 +92,24 @@ float screenScale;
     // Story captions for portrait 2
     SKLabelNode *caption4 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
     caption4.fontSize = 25;
-    caption4.position = CGPointMake(330, 225);
+    caption4.position = CGPointMake(370, 225);
     caption4.name = @"caption4";
     caption4.fontColor = [UIColor blackColor];
-    caption4.text = @"... until one day their home was invaded by a Ninja!";
+    caption4.text = @"Then some Ninja showed up & dragon kicked Stix in the face,";
     
     SKLabelNode *caption5 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
     caption5.fontSize = 25;
-    caption5.position = CGPointMake(330, 225);
+    caption5.position = CGPointMake(400, 195);
     caption5.name = @"caption5";
     caption5.fontColor = [UIColor blackColor];
-    caption5.text = @"The Ninja abducted Stickly and took off!";
+    caption5.text = @"grabbed Stickly, and just took off into the wilderness!";
     
     SKLabelNode *caption6 = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
     caption6.fontSize = 25;
-    caption6.position = CGPointMake(330, 225);
+    caption6.position = CGPointMake(380, 225);
     caption6.name = @"caption6";
     caption6.fontColor = [UIColor blackColor];
-    caption6.text = @"And so our hero's story began";
+    caption6.text = @"And so our hero's story began ...";
     
     
     
@@ -124,6 +124,15 @@ float screenScale;
     
     [self addChild:skip];
     
+    // Map
+    SKSpriteNode *map = [SKSpriteNode spriteNodeWithImageNamed:@"map"];
+    [map setScale:0.8*screenScale];
+    map.name = @"map";
+    map.zPosition = 0;
+    
+    map.position = CGPointMake((CGRectGetMidX(self.frame)),
+                                  CGRectGetMidY(self.frame));
+    
     
     // Automate story via time delay
     double cap1delay = 5.0;
@@ -132,7 +141,8 @@ float screenScale;
     double cap4delay = 20.0;
     double cap5delay = 25.0;
     double cap6delay = 30.0;
-    double sceneDelay = 35.0;
+    double mapDelay = 35.0;
+    double sceneDelay = 50.0;
     
     dispatch_time_t cap1 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(cap1delay * NSEC_PER_SEC));
     dispatch_after(cap1, dispatch_get_main_queue(), ^(void){
@@ -182,6 +192,15 @@ float screenScale;
         
         [caption5 removeFromParent];
         [self addChild:caption6];
+        
+    });
+    
+    dispatch_time_t mapDisplay = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(mapDelay * NSEC_PER_SEC));
+    dispatch_after((mapDisplay), dispatch_get_main_queue(), ^(void){
+        
+        [caption6 removeFromParent];
+        [scene2 removeFromParent];
+        [self addChild:map];
         
     });
     
