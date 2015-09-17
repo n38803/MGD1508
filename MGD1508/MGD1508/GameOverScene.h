@@ -20,5 +20,9 @@
 @property UIButton *sButton;
 @property UIButton *cButton;
 
+@property NSString *username;
+@property NSString *password;
+
+@property int finalScore;
 
 @end

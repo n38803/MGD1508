@@ -15,6 +15,7 @@ CGFloat screenHeight;
 CGFloat screenWidth;
 
 
+
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
 
@@ -66,13 +67,13 @@ CGFloat screenWidth;
     
     // Grab score from GameScene Class
     GameScene *lScore;
-    int score = lScore.score;
+    _finalScore = lScore.score;
     
     
     // Score Label
     _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 70, 150, 30)];
     _scoreLabel.font = [UIFont fontWithName:@"Arial" size:25.0];
-    _scoreLabel.text = [NSString stringWithFormat:@"Score: %i", score];
+    _scoreLabel.text = [NSString stringWithFormat:@"Score: %i", _finalScore];
     [self.view addSubview:_scoreLabel];
     
     
@@ -98,31 +99,130 @@ CGFloat screenWidth;
     
     // Submit / Cancel Buttons
     _sButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 80, 30)];
+    _sButton.tag = 2;
     [_sButton setTitle:@"Submit" forState:UIControlStateNormal];
     [[_sButton layer] setBorderWidth:2.0f];
     [[_sButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [_sButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_sButton];
     
     _cButton = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 80, 30)];
+    _cButton.tag = 3;
     [_cButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [[_cButton layer] setBorderWidth:2.0f];
     [[_cButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [_cButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_cButton];
     
     // Register button
     _rButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 350, 170, 30)];
+    _rButton.tag = 1;
     [_rButton setTitle:@"Register" forState:UIControlStateNormal];
     [[_rButton layer] setBorderWidth:2.0f];
     [[_rButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [_rButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_rButton];
     
-    
-    // Test Parse Server
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"test";
-    [testObject saveInBackground];
+
     
     
+    
+}
+
+- (void)clearInput {
+    _nameInput.text = @"";
+    _pwInput.text = @"";
+    
+}
+
+- (void)signIn {
+
+    _username = _nameInput.text;
+    _password = _pwInput.text;
+    
+    [PFUser logInWithUsernameInBackground:_username
+                                 password:_password
+                                    block:^(PFUser *user, NSError *error) {
+        if (user) {
+            // Do stuff after successful login.
+            [self postScore];
+            [self clearInput];
+            [self logOut];
+            
+        } else {
+            // The login failed. Check error to see why.
+            
+        }
+    }];
+    
+}
+
+- (void)logOut {
+    
+    [PFUser logOut];
+    
+}
+
+- (void)postScore {
+    
+    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+    gameScore[@"score"] = @(_finalScore);
+    gameScore[@"playerName"] = _username;
+    [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // The object has been saved.
+        } else {
+            // There was a problem, check error.description
+        }
+    }];
+    
+}
+
+- (void)registerUser {
+    
+    _username = _nameInput.text;
+    _password = _pwInput.text;
+    
+    PFUser *user = [PFUser user];
+    user.username = _username;
+    user.password = _password;
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // Hooray! Let them use the app now.
+            [self signIn];
+            [self postScore];
+            [self clearInput];
+            [self logOut];
+            
+            
+        } else {
+            
+            NSString *errorString = [error userInfo][@"error"];
+            NSLog(@"ERROR // %@", errorString);
+            // Show the errorString somewhere and let the user try again.
+        }
+    }];
+}
+
+- (void)buttonPressed:(UIButton *)button {
+    
+    // Register Button
+    if (button.tag == 1) {
+        [self registerUser];
+        
+    }
+    
+    // Sign In Button
+    else if (button.tag == 2){
+        [self signIn];
+        
+    }
+    
+    // Cancel button
+    else if (button.tag == 3){
+        [self clearInput];
+    }
     
 }
 
