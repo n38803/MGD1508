@@ -76,14 +76,14 @@ SKSpriteNode *bones;
     
     
     // Score Label
-    _score = 0;
+    score = 50;
     scoreNode = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     //scoreNode.position = CGPointMake( CGRectGetMidX( self.frame ), 3 * self.frame.size.height / 4 );
     scoreNode.position = CGPointMake(900, 700);
     scoreNode.zPosition = 100;
     [scoreNode setScale:1.0*screenScale];
     scoreNode.fontColor = [UIColor redColor];
-    scoreNode.text = [NSString stringWithFormat:@"SCORE: %ld", (long)_score];
+    scoreNode.text = [NSString stringWithFormat:@"SCORE: %ld", (long)score];
     [self addChild:scoreNode];
     
     
@@ -356,8 +356,10 @@ SKSpriteNode *bones;
         [self addChild:bones];
         // Play sound, provide visual feedback, and remove node of player collision
         [self runAction: [SKAction playSoundFileNamed:@"eating.mp3" waitForCompletion:NO]];
-        _score++;
-        scoreNode.text = [NSString stringWithFormat:@"SCORE: %ld", (long)_score];
+        int point = 1;
+        score = (score + point);
+        
+        scoreNode.text = [NSString stringWithFormat:@"SCORE: %i", score];
         [node removeFromParent];
         
         // pause scene

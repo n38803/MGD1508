@@ -4,7 +4,21 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <Parse/Parse.h>
 
 @interface GameOverScene : SKScene
+
+@property UILabel *scoreLabel;
+
+@property UILabel *nameLabel;
+@property UILabel *pwLabel;
+
+@property UITextField *nameInput;
+@property UITextField *pwInput;
+
+@property UIButton *rButton;
+@property UIButton *sButton;
+@property UIButton *cButton;
+
 
 @end

@@ -13,7 +13,7 @@
 @property NSMutableArray *cTextures;
 @property SKLabelNode *pause;
 @property SKLabelNode *play;
-@property NSInteger *score;
+@property (nonatomic,assign) int score;
 
 @property CGPoint touchLocation;
 

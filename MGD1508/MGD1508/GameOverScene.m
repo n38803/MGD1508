@@ -7,13 +7,12 @@
 #import "MenuScene.h"
 #import "GameScene.h"
 
+
 @implementation GameOverScene
 
 CGRect screenRect;
 CGFloat screenHeight;
 CGFloat screenWidth;
-
-
 
 
 -(void)didMoveToView:(SKView *)view {
@@ -65,58 +64,63 @@ CGFloat screenWidth;
                                     CGRectGetMidY(self.frame)-200);
     [self addChild:play];
     
-    // Score set to 0 for testing purposes
-    int score = 0;
-    int test = [GameScene alloc] 
+    // Grab score from GameScene Class
+    GameScene *lScore;
+    int score = lScore.score;
+    
     
     // Score Label
-    UILabel *scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 70, 150, 30)];
-    scoreLabel.font = [UIFont fontWithName:@"Arial" size:25.0];
-    scoreLabel.text = [NSString stringWithFormat:@"Score: %i", score];
-    [self.view addSubview:scoreLabel];
+    _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 70, 150, 30)];
+    _scoreLabel.font = [UIFont fontWithName:@"Arial" size:25.0];
+    _scoreLabel.text = [NSString stringWithFormat:@"Score: %i", score];
+    [self.view addSubview:_scoreLabel];
     
     
     // Name Label
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 100, 160, 50)];
-    nameLabel.text = @"Name: ";
-    [self.view addSubview:nameLabel];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 100, 160, 50)];
+    _nameLabel.text = @"Name: ";
+    [self.view addSubview:_nameLabel];
     
     // Name Input
-    UITextField *nameInput = [[UITextField alloc] initWithFrame:CGRectMake(40, 150, 170, 30)];
-    nameInput.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:nameInput];
+    _nameInput = [[UITextField alloc] initWithFrame:CGRectMake(40, 150, 170, 30)];
+    _nameInput.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:_nameInput];
     
     // PW Label
-    UILabel *pwLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 200, 160, 50)];
-    pwLabel.text = @"Password: ";
-    [self.view addSubview:pwLabel];
+    _pwLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 200, 160, 50)];
+    _pwLabel.text = @"Password: ";
+    [self.view addSubview:_pwLabel];
     
     // PW Input
-    UITextField *pwInput = [[UITextField alloc] initWithFrame:CGRectMake(40, 250, 170, 30)];
-    pwInput.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:pwInput];
+    _pwInput = [[UITextField alloc] initWithFrame:CGRectMake(40, 250, 170, 30)];
+    _pwInput.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:_pwInput];
     
     // Submit / Cancel Buttons
-    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 80, 30)];
-    [submit setTitle:@"Submit" forState:UIControlStateNormal];
-    [[submit layer] setBorderWidth:2.0f];
-    [[submit layer] setBorderColor:[UIColor blackColor].CGColor];
-    [self.view addSubview:submit];
+    _sButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 80, 30)];
+    [_sButton setTitle:@"Submit" forState:UIControlStateNormal];
+    [[_sButton layer] setBorderWidth:2.0f];
+    [[_sButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [self.view addSubview:_sButton];
     
-    UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 80, 30)];
-    [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
-    [[cancel layer] setBorderWidth:2.0f];
-    [[cancel layer] setBorderColor:[UIColor blackColor].CGColor];
-    [self.view addSubview:cancel];
+    _cButton = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 80, 30)];
+    [_cButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [[_cButton layer] setBorderWidth:2.0f];
+    [[_cButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [self.view addSubview:_cButton];
     
     // Register button
-    UIButton *reg = [[UIButton alloc] initWithFrame:CGRectMake(40, 350, 170, 30)];
-    [reg setTitle:@"Register" forState:UIControlStateNormal];
-    [[reg layer] setBorderWidth:2.0f];
-    [[reg layer] setBorderColor:[UIColor blackColor].CGColor];
-    [self.view addSubview:reg];
+    _rButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 350, 170, 30)];
+    [_rButton setTitle:@"Register" forState:UIControlStateNormal];
+    [[_rButton layer] setBorderWidth:2.0f];
+    [[_rButton layer] setBorderColor:[UIColor blackColor].CGColor];
+    [self.view addSubview:_rButton];
     
     
+    // Test Parse Server
+    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"foo"] = @"test";
+    [testObject saveInBackground];
     
     
     
@@ -133,10 +137,24 @@ CGFloat screenWidth;
     if ([node.name isEqualToString:@"Main Menu"]) {
         NSLog(@"Player opted to play again");
         
+        [_scoreLabel removeFromSuperview];
+         
+        [_nameInput removeFromSuperview];
+        [_pwInput removeFromSuperview];
+        
+        [_nameLabel removeFromSuperview];
+        [_pwLabel removeFromSuperview];
+        
+        [_rButton removeFromSuperview];
+        [_sButton removeFromSuperview];
+        [_cButton removeFromSuperview];
+        
         SKScene *myScene = [[MenuScene alloc] initWithSize:self.size];
         SKTransition *transition = [SKTransition doorsCloseHorizontalWithDuration:0.5];
         [self.view presentScene:myScene transition:transition];
     }
+    
+    
 }
 
 
