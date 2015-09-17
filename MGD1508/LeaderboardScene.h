@@ -7,7 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <Parse/Parse.h>
 
-@interface LeaderboardScene : SKScene
+@interface LeaderboardScene : SKScene <UITableViewDataSource, UITableViewDelegate>
+
+@property UITableView *tableView;
+@property NSMutableArray *scoreArray;
 
 @end

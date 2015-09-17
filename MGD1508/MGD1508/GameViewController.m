@@ -4,7 +4,7 @@
 //
 
 #import "GameViewController.h"
-#import "GameOverScene.h"
+#import "LeaderboardScene.h"
 #import "MenuScene.h"
 #import "IntroScene.h"
 
@@ -42,7 +42,7 @@
     skView.ignoresSiblingOrder = YES;
     
     // Create and configure the scene.
-    GameOverScene *scene = [GameOverScene unarchiveFromFile:@"GameOverScene"];
+    LeaderboardScene *scene = [LeaderboardScene unarchiveFromFile:@"LeaderboardScene"];
     //MenuScene *scene = [MenuScene unarchiveFromFile:@"MenuScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
