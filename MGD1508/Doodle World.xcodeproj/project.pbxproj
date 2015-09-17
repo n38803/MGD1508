@@ -21,6 +21,8 @@
 		CD0BFB711B7535F3001B7104 /* glub.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD0BFB6B1B7535F3001B7104 /* glub.mp3 */; };
 		CD0BFB721B7535F3001B7104 /* grunt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD0BFB6C1B7535F3001B7104 /* grunt.mp3 */; };
 		CD0BFB731B7535F3001B7104 /* insect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CD0BFB6D1B7535F3001B7104 /* insect.mp3 */; };
+		CD1C651C1BAB465E00E6B45C /* LeaderboardScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1C651B1BAB465E00E6B45C /* LeaderboardScene.m */; };
+		CD1C651E1BAB468C00E6B45C /* LeaderboardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CD1C651D1BAB468C00E6B45C /* LeaderboardScene.sks */; };
 		CD5CEB141B91482C003CE92C /* CreditsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CD5CEB131B91482C003CE92C /* CreditsScene.sks */; };
 		CD5CEB161B914836003CE92C /* TutorialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CD5CEB151B914836003CE92C /* TutorialScene.sks */; };
 		CD5CEB191B914858003CE92C /* TutorialScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5CEB181B914858003CE92C /* TutorialScene.m */; };
@@ -92,6 +94,9 @@
 		CD0BFB6B1B7535F3001B7104 /* glub.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = glub.mp3; sourceTree = "<group>"; };
 		CD0BFB6C1B7535F3001B7104 /* grunt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = grunt.mp3; sourceTree = "<group>"; };
 		CD0BFB6D1B7535F3001B7104 /* insect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = insect.mp3; sourceTree = "<group>"; };
+		CD1C651A1BAB465E00E6B45C /* LeaderboardScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeaderboardScene.h; path = ../LeaderboardScene.h; sourceTree = "<group>"; };
+		CD1C651B1BAB465E00E6B45C /* LeaderboardScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeaderboardScene.m; path = ../LeaderboardScene.m; sourceTree = "<group>"; };
+		CD1C651D1BAB468C00E6B45C /* LeaderboardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LeaderboardScene.sks; sourceTree = "<group>"; };
 		CD5CEB131B91482C003CE92C /* CreditsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CreditsScene.sks; sourceTree = "<group>"; };
 		CD5CEB151B914836003CE92C /* TutorialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialScene.sks; sourceTree = "<group>"; };
 		CD5CEB171B914858003CE92C /* TutorialScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialScene.h; sourceTree = "<group>"; };
@@ -223,6 +228,9 @@
 				CDA094641B88D8520007DF66 /* GameOverScene.h */,
 				CDA094651B88D8520007DF66 /* GameOverScene.m */,
 				CDA094671B88D8620007DF66 /* GameOverScene.sks */,
+				CD1C651A1BAB465E00E6B45C /* LeaderboardScene.h */,
+				CD1C651B1BAB465E00E6B45C /* LeaderboardScene.m */,
+				CD1C651D1BAB468C00E6B45C /* LeaderboardScene.sks */,
 				CD0BFB471B7533A2001B7104 /* GameViewController.h */,
 				CD0BFB481B7533A2001B7104 /* GameViewController.m */,
 				CD0BFB4A1B7533A2001B7104 /* Main.storyboard */,
@@ -395,6 +403,7 @@
 				CD0BFB511B7533A2001B7104 /* LaunchScreen.xib in Resources */,
 				CD6364121B7D244000E70F73 /* cRun1.png in Resources */,
 				CD5CEB1E1B915CB8003CE92C /* nextgenLogo.png in Resources */,
+				CD1C651E1BAB468C00E6B45C /* LeaderboardScene.sks in Resources */,
 				CD0BFB6F1B7535F3001B7104 /* background.png in Resources */,
 				CD0BFB4E1B7533A2001B7104 /* Images.xcassets in Resources */,
 				CD5CEB161B914836003CE92C /* TutorialScene.sks in Resources */,
@@ -437,6 +446,7 @@
 				CD0BFB491B7533A2001B7104 /* GameViewController.m in Sources */,
 				CDA0945F1B87F6920007DF66 /* MenuScene.m in Sources */,
 				CD0BFB411B7533A2001B7104 /* AppDelegate.m in Sources */,
+				CD1C651C1BAB465E00E6B45C /* LeaderboardScene.m in Sources */,
 				CD0BFB441B7533A2001B7104 /* GameScene.m in Sources */,
 				CD5CEB1C1B914869003CE92C /* CreditsScene.m in Sources */,
 				CDA094661B88D8520007DF66 /* GameOverScene.m in Sources */,

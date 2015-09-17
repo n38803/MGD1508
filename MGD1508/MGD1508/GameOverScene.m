@@ -6,6 +6,7 @@
 #import "GameOverScene.h"
 #import "MenuScene.h"
 #import "GameScene.h"
+#import "LeaderboardScene.h"
 
 
 @implementation GameOverScene
@@ -178,6 +179,12 @@ CGFloat screenWidth;
     
 }
 
+- (void)moveToLeaderboards {
+    SKScene *lboard = [[LeaderboardScene alloc] initWithSize:self.size];
+    SKTransition *transition = [SKTransition doorsCloseHorizontalWithDuration:0.5];
+    [self.view presentScene:lboard transition:transition];
+}
+
 - (void)registerUser {
     
     _username = _nameInput.text;
@@ -196,6 +203,7 @@ CGFloat screenWidth;
             [self logOut];
             
             
+            
         } else {
             
             NSString *errorString = [error userInfo][@"error"];
@@ -210,12 +218,16 @@ CGFloat screenWidth;
     // Register Button
     if (button.tag == 1) {
         [self registerUser];
+        [self moveToLeaderboards];
+        [self removeUIControls];
         
     }
     
     // Sign In Button
     else if (button.tag == 2){
         [self signIn];
+        [self moveToLeaderboards];
+        [self removeUIControls];
         
     }
     
@@ -226,6 +238,19 @@ CGFloat screenWidth;
     
 }
 
+- (void)removeUIControls {
+    [_scoreLabel removeFromSuperview];
+    
+    [_nameInput removeFromSuperview];
+    [_pwInput removeFromSuperview];
+    
+    [_nameLabel removeFromSuperview];
+    [_pwLabel removeFromSuperview];
+    
+    [_rButton removeFromSuperview];
+    [_sButton removeFromSuperview];
+    [_cButton removeFromSuperview];
+}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -237,17 +262,7 @@ CGFloat screenWidth;
     if ([node.name isEqualToString:@"Main Menu"]) {
         NSLog(@"Player opted to play again");
         
-        [_scoreLabel removeFromSuperview];
-         
-        [_nameInput removeFromSuperview];
-        [_pwInput removeFromSuperview];
-        
-        [_nameLabel removeFromSuperview];
-        [_pwLabel removeFromSuperview];
-        
-        [_rButton removeFromSuperview];
-        [_sButton removeFromSuperview];
-        [_cButton removeFromSuperview];
+        [self removeUIControls];
         
         SKScene *myScene = [[MenuScene alloc] initWithSize:self.size];
         SKTransition *transition = [SKTransition doorsCloseHorizontalWithDuration:0.5];

@@ -11,6 +11,7 @@
 #import "CreditsScene.h"
 #import "TutorialScene.h"
 #import "IntroScene.h"
+#import "LeaderboardScene.h"
 
 @implementation MenuScene
 
@@ -47,18 +48,28 @@ float tinyScale;
     title.fontSize = 45;
     [title setScale:1.0*screenScale];
     title.fontColor = [UIColor whiteColor];
-    title.text = @"DOODLE WORLD";
+    title.text = @"STIX/STICKLY";
     [self addChild:title];
     
     SKLabelNode *start = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     start.position = CGPointMake(CGRectGetMidX(self.frame),
-                                 CGRectGetMidY(self.frame)-50);
+                                 CGRectGetMidY(self.frame));
     start.fontSize = 30;
     [start setScale:1.0*screenScale];
     start.fontColor = [UIColor blackColor];
     start.text = @"- Play Game - ";
     start.name = @"start";
     [self addChild:start];
+    
+    SKLabelNode *leaderboard = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    leaderboard.position = CGPointMake(CGRectGetMidX(self.frame),
+                                 CGRectGetMidY(self.frame)-50);
+    leaderboard.fontSize = 30;
+    [leaderboard setScale:1.0*screenScale];
+    leaderboard.fontColor = [UIColor blackColor];
+    leaderboard.text = @"- Leaderboards - ";
+    leaderboard.name = @"leaderboard";
+    [self addChild:leaderboard];
     
     SKLabelNode *tutorial = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     tutorial.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -95,6 +106,14 @@ float tinyScale;
         SKScene *game = [[IntroScene alloc] initWithSize:self.size];
         SKTransition *transition = [SKTransition doorsCloseHorizontalWithDuration:0.5];
         [self.view presentScene:game transition:transition];
+    }
+    
+    else if ([node.name isEqualToString:@"leaderboard"]) {
+        NSLog(@"leaderboards pressed");
+        
+        SKScene *leader = [[LeaderboardScene alloc] initWithSize:self.size];
+        SKTransition *transition = [SKTransition doorsCloseHorizontalWithDuration:0.5];
+        [self.view presentScene:leader transition:transition];
     }
     
     else if ([node.name isEqualToString:@"tutorial"]) {
