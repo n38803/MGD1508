@@ -1,13 +1,10 @@
 //
-//  GameViewController.m
-//  MGD1508
-//
-//  Created by Shaun Thompson on 8/7/15.
+//  IAD1509
 //  Copyright (c) 2015 Shaun Thompson. All rights reserved.
 //
 
 #import "GameViewController.h"
-#import "GameScene.h"
+#import "GameOverScene.h"
 #import "MenuScene.h"
 #import "IntroScene.h"
 
@@ -44,9 +41,8 @@
     skView.ignoresSiblingOrder = YES;
     
     // Create and configure the scene.
-    //GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
-    MenuScene *scene = [MenuScene unarchiveFromFile:@"MenuScene"];
-    //IntroScene *scene = [IntroScene unarchiveFromFile:@"IntroScene"];
+    GameOverScene *scene = [GameOverScene unarchiveFromFile:@"GameOverScene"];
+    //MenuScene *scene = [MenuScene unarchiveFromFile:@"MenuScene"];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.

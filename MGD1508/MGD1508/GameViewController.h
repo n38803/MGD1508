@@ -1,8 +1,5 @@
 //
-//  GameViewController.h
-//  MGD1508
-//
-
+//  IAD1509
 //  Copyright (c) 2015 Shaun Thompson. All rights reserved.
 //
 

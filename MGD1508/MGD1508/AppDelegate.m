@@ -1,8 +1,5 @@
 //
-//  AppDelegate.m
-//  MGD1508
-//
-//  Created by Shaun Thompson on 8/7/15.
+//  IAD1509
 //  Copyright (c) 2015 Shaun Thompson. All rights reserved.
 //
 

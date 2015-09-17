@@ -1,8 +1,5 @@
 //
-//  GameOverScene.h
-//  MGD1508
-//
-//  Created by Shaun Thompson on 8/22/15.
+//  IAD1509
 //  Copyright (c) 2015 Shaun Thompson. All rights reserved.
 //
 

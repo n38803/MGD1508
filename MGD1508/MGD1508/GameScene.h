@@ -1,8 +1,5 @@
 //
-//  GameScene.h
-//  MGD1508
-//
-
+//  IAD1509
 //  Copyright (c) 2015 Shaun Thompson. All rights reserved.
 //
 
@@ -16,6 +13,7 @@
 @property NSMutableArray *cTextures;
 @property SKLabelNode *pause;
 @property SKLabelNode *play;
+@property NSInteger *score;
 
 @property CGPoint touchLocation;
 

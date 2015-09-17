@@ -1,19 +1,19 @@
 //
-//  GameOverScene.m
-//  MGD1508
-//
-//  Created by Shaun Thompson on 8/22/15.
+//  IAD1509
 //  Copyright (c) 2015 Shaun Thompson. All rights reserved.
 //
 
 #import "GameOverScene.h"
 #import "MenuScene.h"
+#import "GameScene.h"
 
 @implementation GameOverScene
 
 CGRect screenRect;
 CGFloat screenHeight;
 CGFloat screenWidth;
+
+
 
 
 -(void)didMoveToView:(SKView *)view {
@@ -64,6 +64,57 @@ CGFloat screenWidth;
     play.position = CGPointMake(CGRectGetMidX(self.frame),
                                     CGRectGetMidY(self.frame)-200);
     [self addChild:play];
+    
+    // Score set to 0 for testing purposes
+    int score = 0;
+    int test = [GameScene alloc] 
+    
+    // Score Label
+    UILabel *scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 70, 150, 30)];
+    scoreLabel.font = [UIFont fontWithName:@"Arial" size:25.0];
+    scoreLabel.text = [NSString stringWithFormat:@"Score: %i", score];
+    [self.view addSubview:scoreLabel];
+    
+    
+    // Name Label
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 100, 160, 50)];
+    nameLabel.text = @"Name: ";
+    [self.view addSubview:nameLabel];
+    
+    // Name Input
+    UITextField *nameInput = [[UITextField alloc] initWithFrame:CGRectMake(40, 150, 170, 30)];
+    nameInput.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:nameInput];
+    
+    // PW Label
+    UILabel *pwLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 200, 160, 50)];
+    pwLabel.text = @"Password: ";
+    [self.view addSubview:pwLabel];
+    
+    // PW Input
+    UITextField *pwInput = [[UITextField alloc] initWithFrame:CGRectMake(40, 250, 170, 30)];
+    pwInput.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:pwInput];
+    
+    // Submit / Cancel Buttons
+    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(40, 300, 80, 30)];
+    [submit setTitle:@"Submit" forState:UIControlStateNormal];
+    [[submit layer] setBorderWidth:2.0f];
+    [[submit layer] setBorderColor:[UIColor blackColor].CGColor];
+    [self.view addSubview:submit];
+    
+    UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(130, 300, 80, 30)];
+    [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+    [[cancel layer] setBorderWidth:2.0f];
+    [[cancel layer] setBorderColor:[UIColor blackColor].CGColor];
+    [self.view addSubview:cancel];
+    
+    // Register button
+    UIButton *reg = [[UIButton alloc] initWithFrame:CGRectMake(40, 350, 170, 30)];
+    [reg setTitle:@"Register" forState:UIControlStateNormal];
+    [[reg layer] setBorderWidth:2.0f];
+    [[reg layer] setBorderColor:[UIColor blackColor].CGColor];
+    [self.view addSubview:reg];
     
     
     
