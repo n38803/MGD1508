@@ -16,7 +16,6 @@ CGFloat screenHeight;
 CGFloat screenWidth;
 
 
-
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
 
@@ -67,14 +66,14 @@ CGFloat screenWidth;
     [self addChild:play];
     
     // Grab score from GameScene Class
-    GameScene *lScore;
-    _finalScore = lScore.score;
+    GameScene *object = [[GameScene alloc] init];
+    int newScore = object.score;
     
     
     // Score Label
     _scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 70, 150, 30)];
     _scoreLabel.font = [UIFont fontWithName:@"Arial" size:25.0];
-    _scoreLabel.text = [NSString stringWithFormat:@"Score: %i", _finalScore];
+    _scoreLabel.text = [NSString stringWithFormat:@"Score: %i", newScore];
     [self.view addSubview:_scoreLabel];
     
     

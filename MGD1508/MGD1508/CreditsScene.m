@@ -8,6 +8,7 @@
 
 #import "CreditsScene.h"
 #import "MenuScene.h"
+#import "GameOverScene.h"
 
 CGRect screenRect;
 CGFloat screenHeight;

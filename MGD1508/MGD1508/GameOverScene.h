@@ -5,8 +5,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import <Parse/Parse.h>
+#import "GameScene.h"
 
 @interface GameOverScene : SKScene
+
+
+
 
 @property UILabel *scoreLabel;
 
@@ -23,6 +27,7 @@
 @property NSString *username;
 @property NSString *password;
 
-@property int finalScore;
+@property (nonatomic) int finalScore;
+
 
 @end

@@ -8,6 +8,8 @@
 
 @implementation GameScene
 
+@synthesize score;
+
 static const int heroCategory       =  1 << 0;
 static const int worldCategory      =  1 << 1;
 static const int enemyCategory      =  1 << 2;
@@ -19,7 +21,6 @@ CGFloat screenWidth;
 float screenScale;
 float tinyScale;
 
-@synthesize score;
 
 SKLabelNode *scoreNode;
 SKSpriteNode *bones;
@@ -383,6 +384,11 @@ SKSpriteNode *bones;
         [self runAction: [SKAction playSoundFileNamed:@"grunt.mp3" waitForCompletion:NO]];
         NSLog(@"Player collided with Enemy");
         
+        NSLog(@"FINAL SCORE: %i", score);
+        
+        // Pass Final score over to GameOverScene
+        //GameOverScene *gameover = [[GameOverScene alloc] init];
+        //gameover.score = *(&(score));
         
         // Transition to GameOver Scene
         SKScene *gameOver = [[GameOverScene alloc] initWithSize:self.size];
