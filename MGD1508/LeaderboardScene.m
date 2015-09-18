@@ -83,6 +83,15 @@ float screenScale;
 - (void) queryParse {
     
     PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+    
+    NSDate *now = [NSDate date];
+    NSDateComponents *days = [NSDateComponents new];
+    [days setDay:-1];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *yesterday = [cal dateByAddingComponents:days toDate:now options:0];
+    [query whereKey:@"createdAt" greaterThan:yesterday];
+    
+    [query orderByDescending:@"score"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          
